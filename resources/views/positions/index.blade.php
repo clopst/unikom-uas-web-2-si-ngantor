@@ -1,18 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Karyawan')
+@section('title', 'Data Jabatan')
 
 @section('content_header')
-    <h1>Data Karyawan</h1>
+    <h1>Data Jabatan</h1>
 @stop
 
 @section('plugins.Datatables', true)
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <p>List data karyawan.</p>
+        <p>List data jabatan.</p>
 
-        <a href="{{ route('employees.create') }}">
+        <a href="{{ route('positions.create') }}">
             <button class="btn btn-primary">Create</button>
         </a>
     </div>
@@ -21,17 +21,7 @@
         <div class="col-md-12">
             {{-- Setup data for datatables --}}
             @php
-                $heads = [
-                    'ID',
-                    'Nama Depan',
-                    'Nama Belakang',
-                    'Email',
-                    'Jenis Kelamin',
-                    'Tanggal Lahir',
-                    'Jabatan',
-                    'Shift',
-                    'Actions',
-                ];
+                $heads = ['ID', 'Nama', 'Parent Jabatan', 'Actions'];
             @endphp
 
             <x-adminlte-datatable id="table" :heads="$heads" />
@@ -47,7 +37,7 @@
             let config = {
                 'processing': true,
                 'serverSide': true,
-                'ajax': "{{ route('employees.index') }}",
+                'ajax': "{{ route('positions.index') }}",
                 'columnDefs': [{
                     'defaultContent': '-',
                     'targets': '_all',
@@ -57,40 +47,20 @@
                         'name': 'id',
                     },
                     {
-                        'data': 'first_name',
-                        'name': 'first_name',
+                        'data': 'name',
+                        'name': 'name',
                     },
                     {
-                        'data': 'last_name',
-                        'name': 'last_name',
-                    },
-                    {
-                        'data': 'user.email',
-                        'name': 'user.email',
-                    },
-                    {
-                        'data': 'gender',
-                        'name': 'gender',
-                    },
-                    {
-                        'data': 'birth_date',
-                        'name': 'birth_date',
-                    },
-                    {
-                        'data': 'position.name',
-                        'name': 'position.name',
-                    },
-                    {
-                        'data': 'shift.name',
-                        'name': 'shift.name',
+                        'data': 'parent.name',
+                        'name': 'parent.name',
                     },
                     {
                         'data': null,
                         'render': (data, type, row) => {
-                            let routeEdit = "{{ route('employees.edit', ':id') }}";
+                            let routeEdit = "{{ route('positions.edit', ':id') }}";
                             routeEdit = routeEdit.replace(":id", row.id);
 
-                            let routeDelete = "{{ route('employees.destroy', ':id') }}";
+                            let routeDelete = "{{ route('positions.destroy', ':id') }}";
                             routeDelete = routeDelete.replace(":id", row.id);
 
                             return `<div class="d-flex">
