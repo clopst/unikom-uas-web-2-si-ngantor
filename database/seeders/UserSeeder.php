@@ -15,6 +15,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // Admin
+        $admin = new User([
+            'email' => 'admin@company.com',
+            'password' => bcrypt('password123'),
+        ]);
+        $admin->save();
+
         $employees = Employee::all();
         foreach ($employees as $employee) {
             $user = new User([
