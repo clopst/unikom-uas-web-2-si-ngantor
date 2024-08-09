@@ -1,5 +1,7 @@
 <?php
 
+// 10123914 - DIMAS NURFAUZI
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;

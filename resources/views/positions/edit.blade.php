@@ -1,3 +1,5 @@
+{{-- 10123909 - Andi Tegar Permadi --}}
+
 @extends('adminlte::page')
 
 @section('title', 'Data Jabatan')
