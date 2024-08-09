@@ -18,5 +18,18 @@ class Attendance extends Model
         'employee_id',
         'date',
         'type',
+        'is_late',
     ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'is_late' => 'boolean',
+        ];
+    }
 }

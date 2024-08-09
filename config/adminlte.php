@@ -316,9 +316,9 @@ return [
             'icon' => 'fas fa-fw fa-chart-pie',
         ],
         [
-            'text' => 'Kehadiran',
-            'url' => '/',
-            'icon' => 'fas fa-fw fa-tasks',
+            'text' => 'Organisasi',
+            'url' => 'organization',
+            'icon' => 'fas fa-fw fa-chart-pie',
         ],
         ['header' => 'MASTER DATA'],
         [
@@ -336,16 +336,11 @@ return [
             'url' => 'shifts',
             'icon' => 'fas fa-fw fa-clock',
         ],
+        ['header' => 'ACCOUNT'],
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-cog',
+            'text' => 'Logout',
+            'url' => 'auth/logout',
+            'icon' => 'fas fa-fw fa-sign-out-alt',
         ],
     ],
 
