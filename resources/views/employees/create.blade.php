@@ -69,8 +69,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="shift_id">Atasan</label>
-                                <x-adminlte-select2 class="form-control" name="shift_id" id="shift_id"
+                                <label for="parent_id">Atasan</label>
+                                <x-adminlte-select2 class="form-control" name="parent_id" id="parent_id"
                                     style="width: 100%;">
                                     @foreach ($parents as $parent)
                                         <option value="{{ $parent->id }}">{{ $parent->first_name }}
