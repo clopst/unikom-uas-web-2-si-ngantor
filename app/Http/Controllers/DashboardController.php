@@ -34,6 +34,8 @@ class DashboardController extends Controller
         $attendanceStatus = [
             'should_attendance' => true,
             'type' => 'in',
+            'not_yet' => false,
+            'next' => null,
         ];
 
         if ($attendanceToday->count() > 0) {
@@ -49,6 +51,27 @@ class DashboardController extends Controller
             }
         }
 
+        if ($attendanceStatus['should_attendance'] == true) {
+            if ($attendanceStatus['type'] == 'in') {
+                $minTime = Carbon::createFromFormat('H:i:s', $user->employee->shift->in)
+                    ->subMinutes($user->employee->shift->tolerance);
+            } else {
+                $minTime = Carbon::createFromFormat('H:i:s', $user->employee->shift->out)
+                    ->subMinutes($user->employee->shift->tolerance);
+            }
+
+            if ($now < $minTime) {
+                $attendanceStatus['not_yet'] = true;
+                $attendanceStatus['next'] = $minTime;
+            }
+        }
+
         return view('index', ['user' => $user, 'attendances' => $attendances, 'attendance_status' => $attendanceStatus]);
+    }
+
+    public function dashboard(Request $request)
+    {
+        $user = $request->user()->load('employee');
+        return view('organization', ['user' => $user]);
     }
 }

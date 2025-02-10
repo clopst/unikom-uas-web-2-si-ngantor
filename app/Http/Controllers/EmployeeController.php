@@ -34,8 +34,9 @@ class EmployeeController extends Controller
     {
         $positions = Position::all();
         $shifts = Shift::all();
+        $parents = Employee::all();
 
-        return view('employees.create', ['positions' => $positions, 'shifts' => $shifts]);
+        return view('employees.create', ['positions' => $positions, 'shifts' => $shifts, 'parents' => $parents]);
     }
 
     /**
@@ -50,6 +51,7 @@ class EmployeeController extends Controller
             'birth_date' => 'required|date',
             'position_id' => 'required|string|exists:positions,id',
             'shift_id' => 'required|string|exists:shifts,id',
+            'parent_id' => 'nullable|string',
             'email' => 'required|string|email',
             'password' => 'required|string|min:6',
         ]);
@@ -61,6 +63,7 @@ class EmployeeController extends Controller
             'birth_date' => $request->birth_date,
             'position_id' => $request->position_id,
             'shift_id' => $request->shift_id,
+            'parent_id' => $request->parent_id,
         ]);
         $employee->save();
 
@@ -92,8 +95,9 @@ class EmployeeController extends Controller
 
         $positions = Position::all();
         $shifts = Shift::all();
+        $parents = Employee::whereNot('id', $employee->id)->get();
 
-        return view('employees.edit', ['employee' => $employee, 'positions' => $positions, 'shifts' => $shifts]);
+        return view('employees.edit', ['employee' => $employee, 'positions' => $positions, 'shifts' => $shifts, 'parents' => $parents]);
     }
 
     /**
@@ -108,6 +112,7 @@ class EmployeeController extends Controller
             'birth_date' => 'required|date',
             'position_id' => 'required|string|exists:positions,id',
             'shift_id' => 'required|string|exists:shifts,id',
+            'parent_id' => 'nullable|string',
             'email' => 'required|string|email',
             'password' => 'nullable|string|min:6',
         ]);
@@ -119,6 +124,7 @@ class EmployeeController extends Controller
             'birth_date' => $request->birth_date,
             'position_id' => $request->position_id,
             'shift_id' => $request->shift_id,
+            'parent_id' => $request->parent_id,
         ]);
         $employee->save();
 

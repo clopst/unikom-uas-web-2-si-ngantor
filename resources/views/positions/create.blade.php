@@ -29,14 +29,14 @@
                                 <x-adminlte-input type="text" class="form-control" name="name" id="name" />
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label for="parent_id">Parent Jabatan</label>
                             <x-adminlte-select2 class="form-control" name="parent_id" id="parent_id" style="width: 100%;">
                                 @foreach ($parents as $parent)
                                     <option value="{{ $parent->id }}">{{ $parent->name }}</option>
                                 @endforeach
                             </x-adminlte-select2>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <!-- /.card-body -->

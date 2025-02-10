@@ -14,8 +14,8 @@ return new class extends Migration {
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('name');
+            $table->integer('level');
             $table->timestamps();
         });
     }

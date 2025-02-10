@@ -52,10 +52,23 @@
 
                     <div class="card-footer text-center">
                         @if ($attendance_status['should_attendance'])
-                            @if ($attendance_status['type'] === 'in')
-                                <button type="submit" class="btn btn-primary">Absensi Masuk</button>
+                            @if ($attendance_status['not_yet'])
+                                <span>Belum Masuk Waktu Absensi
+                                    @if ($attendance_status['type'] === 'in')
+                                       Masuk
+                                    @else
+                                        Keluar
+                                    @endif
+                                </span>
+                                <p>Akan Dibuka Pada:
+                                    <strong>{{ $attendance_status['next'] }}</strong>
+                                </p>
                             @else
-                                <button type="submit" class="btn btn-warning">Absensi Keluar</button>
+                                @if ($attendance_status['type'] === 'in')
+                                    <button type="submit" class="btn btn-primary">Absensi Masuk</button>
+                                @else
+                                    <button type="submit" class="btn btn-warning">Absensi Keluar</button>
+                                @endif
                             @endif
                         @else
                             <span>Absensi Hari Ini Telah Selesai</span>

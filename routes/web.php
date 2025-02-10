@@ -24,3 +24,5 @@ Route::resource('positions', PositionController::class)->middleware('auth');
 // 10123910 - Gilbert Santoso
 Route::resource('shifts', ShiftController::class)->middleware('auth');
 
+Route::get('/organization', [DashboardController::class, 'dashboard'])->middleware('auth');
+

@@ -15,21 +15,55 @@ class PositionSeeder extends Seeder
      */
     public function run(): void
     {
-        $direktur = new Position([
-            'name' => 'Direktur',
-        ]);
-        $direktur->save();
+        $data = [
+            [
+                'name' => 'CEO',
+                'level' => 1,
+            ],
+            [
+                'name' => 'Head of HR',
+                'level' => 2,
+            ],
+            [
+                'name' => 'Head of Marketing',
+                'level' => 2,
+            ],
+            [
+                'name' => 'Head of Development',
+                'level' => 2,
+            ],
+            [
+                'name' => 'HR Manager',
+                'level' => 3,
+            ],
+            [
+                'name' => 'Marketing Manager',
+                'level' => 3,
+            ],
+            [
+                'name' => 'Senior Developer',
+                'level' => 3,
+            ],
+            [
+                'name' => 'HR Specialist',
+                'level' => 4,
+            ],
+            [
+                'name' => 'Marketing Specialist',
+                'level' => 4,
+            ],
+            [
+                'name' => 'Junior Developer',
+                'level' => 4,
+            ],
+            [
+                'name' => 'Customer Service',
+                'level' => 5,
+            ],
+        ];
 
-        $manager = new Position([
-            'parent_id' => $direktur->id,
-            'name' => 'Manager',
-        ]);
-        $manager->save();
-
-        $staff = new Position([
-            'parent_id' => $manager->id,
-            'name' => 'Staff',
-        ]);
-        $staff->save();
+        foreach ($data as $item) {
+            Position::create($item);
+        }
     }
 }

@@ -52,10 +52,10 @@
                         'data': 'name',
                         'name': 'name',
                     },
-                    {
-                        'data': 'parent.name',
-                        'name': 'parent.name',
-                    },
+                    // {
+                    //     'data': 'parent.name',
+                    //     'name': 'parent.name',
+                    // },
                     {
                         'data': null,
                         'render': (data, type, row) => {

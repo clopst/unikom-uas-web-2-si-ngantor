@@ -78,6 +78,24 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="shift_id">Atasan</label>
+                                <x-adminlte-select2 class="form-control" name="shift_id" id="shift_id"
+                                    value="{{ $employee->parent_id }}" style="width: 100%;">
+                                    @foreach ($parents as $parent)
+                                        <option value="{{ $parent->id }}"
+                                            {{ $employee->parent_id === $parent->id ? 'selected' : '' }}>
+                                            {{ $parent->first_name }} {{ $parent->last_name }}
+                                            ({{ $parent->position->name }})
+                                        </option>
+                                    @endforeach
+                                </x-adminlte-select2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="shift_id">Shift</label>
                                 <x-adminlte-select2 class="form-control" name="shift_id" id="shift_id"
                                     value="{{ $employee->shift_id }}" style="width: 100%;">

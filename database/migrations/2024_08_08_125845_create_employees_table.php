@@ -26,6 +26,11 @@ return new class extends Migration {
                 ->nullable()
                 ->references('id')->on('shifts')
                 ->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId('parent_id')
+                ->nullable()
+                ->references('id')->on('employees')
+                ->cascadeOnUpdate()->nullOnDelete();
+            ;
             $table->timestamps();
         });
     }

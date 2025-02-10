@@ -310,6 +310,11 @@ return [
             'url' => '/',
             'icon' => 'fas fa-fw fa-chart-pie',
         ],
+        [
+            'text' => 'Organisasi',
+            'url' => '/organization',
+            'icon' => 'fas fa-fw fa-university',
+        ],
         ['header' => 'MASTER DATA'],
         [
             'text' => 'Data Karyawan',

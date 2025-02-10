@@ -25,8 +25,8 @@ class ShiftSeeder extends Seeder
 
         $siang = new Shift([
             'name' => 'Shift Siang',
-            'in' => '12:00:00',
-            'out' => '20:00:00',
+            'in' => '13:00:00',
+            'out' => '21:00:00',
             'tolerance' => 15,
         ]);
         $siang->save();

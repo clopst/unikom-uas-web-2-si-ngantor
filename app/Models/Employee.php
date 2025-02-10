@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Employee extends Model
@@ -25,6 +26,7 @@ class Employee extends Model
         'birth_date',
         'position_id',
         'shift_id',
+        'parent_id',
     ];
 
     /**
@@ -55,5 +57,15 @@ class Employee extends Model
     public function shift(): BelongsTo
     {
         return $this->belongsTo(Shift::class);
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class, 'parent_id');
+    }
+
+    public function subordinates(): HasMany
+    {
+        return $this->hasMany(Employee::class, 'parent_id');
     }
 }

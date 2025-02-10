@@ -31,9 +31,8 @@ class PositionController extends Controller
      */
     public function create()
     {
-        $parents = Position::all();
 
-        return view('positions.create', ['parents' => $parents]);
+        return view('positions.create', );
     }
 
     /**
@@ -43,12 +42,10 @@ class PositionController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'parent_id' => 'nullable|string|exists:positions,id',
         ]);
 
         $position = new Position([
             'name' => $request->name,
-            'parent_id' => $request->parent_id,
         ]);
         $position->save();
 
@@ -70,9 +67,8 @@ class PositionController extends Controller
     public function edit(Position $position)
     {
         $position->load('parent');
-        $parents = Position::whereNot('id', $position->id)->get();
 
-        return view('positions.edit', ['position' => $position, 'parents' => $parents]);
+        return view('positions.edit', ['position' => $position]);
     }
 
     /**
@@ -82,12 +78,10 @@ class PositionController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'parent_id' => 'nullable|string|exists:positions,id',
         ]);
 
         $position->fill([
             'name' => $request->name,
-            'parent_id' => $request->parent_id,
         ]);
         $position->save();
 
